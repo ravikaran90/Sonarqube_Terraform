@@ -1,0 +1,31 @@
+// Ingress Creation with sonarqube as the backend service
+resource "kubernetes_ingress" "soanrqube-ingress" {
+	metadata {
+	name = "sonarqube-ingress"
+	namespace = "sonarqube"
+	annotations = {
+		"kubernets.io/ingress.class" = "gce"
+		}
+	}
+	spec {
+		backend {
+		service_name = "sonarqube-sonarqube"
+		service_port = 9000
+		}
+		
+		rule {
+			http {
+				path {
+					backend {
+						service_name = "sonarqube-sonarqube"
+						service_port = 9000
+					}
+					path = "/*"
+				}
+			}
+		}
+	}
+	//tls
+	// secret_name = "anythingsecure"
+	//}
+}
