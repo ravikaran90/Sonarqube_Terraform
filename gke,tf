@@ -1,0 +1,28 @@
+//Kubernetes Cluster Creation
+resource "google_container_cluser" "sonarqube" {
+	name = "sonarqube"
+	location = "us-central1"
+	initial_node_count = 1
+	network = "sonarqube-network-2"	
+	subnetwork = "soanrqube-subnet"
+	ip_allocation_policy {
+	cluster_ipv4_cidr_block = "10.72.0.0/14"	
+	services_ipv4_cidr_block = "10.76.0.0/20"
+	}
+	dynamic "master_authorized_networks_config" {
+		for_each = local.master_authorized_networks_config
+		content {
+			dynamic "cidr_blocks" {
+			for_each = master_authorized_networks_config.value.cidr_blocks
+			content {
+			cidr_block = looku[ (cidr_blocks.value,"cidr_block","")
+			display_name = lookup (cidr_blocks.value,"display_name",) //Might be
+			}
+		}
+	}
+}
+	private _cluster_config {
+		enable_private_endpoint = "false"
+		enable_private_nodes = "true"
+		master_ipv4_cidr_block = "10.71.0.0/28"
+}
