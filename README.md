@@ -2,7 +2,7 @@
 
 In this project, VPCs, NAT (Cloud Router and Cloud NAT), Kubernetes Cluster creation has been done through terraform.
 
-You can install an editor such as Visual Studio, then keep the terraform (tf) files in folder.
+You can install an editor such as Visual Studio, then keep the terraform (tf) files in the same folder.
 
 Initialize the terrafrom within the folder:
 terrafrom init
