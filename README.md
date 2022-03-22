@@ -13,4 +13,4 @@ terrafrom plan -out="infra-plan"
 Creation of Infrastructure
 terraform apply infra-plan
 
-After the Infrastructure creation, sonarqube is installed on the Kubernetes cluster abd then an ingress is created and attached to sonarqube service.
+After the Infrastructure creation, sonarqube is installed on the Kubernetes cluster and then an ingress is created and attached to sonarqube service.
